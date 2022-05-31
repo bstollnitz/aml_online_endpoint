@@ -36,6 +36,11 @@ conda activate aml-managed-endpoint-mlflow
 ```
 
 
+# Train locally
+
+Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is created with the trained model.
+
+
 # Deploy in the cloud
 
 ## Endpoint 1
