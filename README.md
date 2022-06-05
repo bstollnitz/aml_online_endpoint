@@ -32,13 +32,13 @@ conda env create -f environment.yml
 Activate conda environment:
 
 ```
-conda activate aml-managed-endpoint-mlflow
+conda activate aml-online-endpoint-mlflow
 ```
 
 
 # Train locally
 
-Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is created with the trained model.
+Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is created with the trained model. Repeat for endpoint 2.
 
 
 # Deploy in the cloud
@@ -46,11 +46,15 @@ Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is c
 ## Endpoint 1
 
 ```
-cd aml-managed-endpoint-mlflow/endpoint-1
+cd aml-online-endpoint-mlflow/endpoint-1
 ```
 
 ```
-az ml model create --path model/ --name model-managed-mlflow-1 --version 1 
+mlflow models predict --model-uri model --input-path "../test-data/images.csv" --content-type csv
+```
+
+```
+az ml model create --path model/ --name model-online-mlflow-1 --version 1 
 ```
 
 ```
@@ -59,18 +63,22 @@ az ml online-deployment create -f cloud/deployment.yml --all-traffic
 ```
 
 ```
-az ml online-endpoint invoke --name endpoint-managed-mlflow-1 --request-file ../test-data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-online-mlflow-1 --request-file ../test-data/images_azureml.json
 ```
 
 
 ## Endpoint 2
 
 ```
-cd aml-managed-endpoint-mlflow/endpoint-2
+cd aml-online-endpoint-mlflow/endpoint-2
 ```
 
 ```
-az ml model create --path model/ --name model-managed-mlflow-2 --version 1 
+mlflow models predict --model-uri pyfunc-model --input-path "../test-data/images.csv" --content-type csv
+```
+
+```
+az ml model create --path pyfunc-model/ --name model-online-mlflow-2 --version 1 
 ```
 
 ```
@@ -79,5 +87,5 @@ az ml online-deployment create -f cloud/deployment.yml --all-traffic
 ```
 
 ```
-az ml online-endpoint invoke --name endpoint-managed-mlflow-2 --request-file ../test-data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-online-mlflow-2 --request-file ../test-data/images_azureml.json
 ```
