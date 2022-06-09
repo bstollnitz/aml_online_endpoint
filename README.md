@@ -19,7 +19,7 @@ This project shows how to deploy a Fashion MNIST MLflow model using an online ma
 
 ## Project setup
 
-If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace".
+If you have access to GitHub Codespaces, click on the "Code" button in this GitHub repo, select the "Codespaces" tab, and then click on "New codespace."
 
 Alternatively, you can set up your local machine using the following steps.
 
