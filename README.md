@@ -72,7 +72,7 @@ cd aml-online-endpoint-mlflow/endpoint-1
 Create the model resource on Azure ML.
 
 ```
-az ml model create --path model/ --name model-online-mlflow-1 --version 1 
+az ml model create --path model/ --name model-online-mlflow-1 --version 1 --type mlflow_model
 ```
 
 Create the endpoint.
@@ -98,7 +98,7 @@ cd aml-online-endpoint-mlflow/endpoint-2
 Create the model resource on Azure ML.
 
 ```
-az ml model create --path pyfunc-model/ --name model-online-mlflow-2 --version 1 
+az ml model create --path pyfunc-model/ --name model-online-mlflow-2 --version 1 --type mlflow_model
 ```
 
 Create the endpoint.
