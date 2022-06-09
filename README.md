@@ -36,12 +36,32 @@ conda activate aml-online-endpoint-mlflow
 ```
 
 
-# Train locally
+# Train and predict locally
 
-Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is created with the trained model. Repeat for endpoint 2.
+* Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is created with the trained model.
+* You can analyze the metrics logged in the "mlruns" directory with the following command:
+
+```
+mlflow ui
+```
+
+* Make a local prediction using the trained mlflow model. You can use either csv or json files:
+
+```
+mlflow models predict --model-uri model --input-path "../test-data/images.csv" --content-type csv
+mlflow models predict --model-uri model --input-path "../test-data/images.json" --content-type json
+```
+
+* Repeat for endpoint 2.
 
 
 # Deploy in the cloud
+
+Create the compute cluster.
+
+```
+az ml compute create -f cloud/cluster-gpu.yml
+```
 
 ## Endpoint 1
 
@@ -49,18 +69,20 @@ Open the 'endpoint-1/src/train.py` file and press F5. An 'endpoint-1/model' is c
 cd aml-online-endpoint-mlflow/endpoint-1
 ```
 
-```
-mlflow models predict --model-uri model --input-path "../test-data/images.csv" --content-type csv
-```
+Create the model resource on Azure ML.
 
 ```
 az ml model create --path model/ --name model-online-mlflow-1 --version 1 
 ```
 
+Create the endpoint.
+
 ```
 az ml online-endpoint create -f cloud/endpoint.yml
 az ml online-deployment create -f cloud/deployment.yml --all-traffic
 ```
+
+Invoke the endpoint.
 
 ```
 az ml online-endpoint invoke --name endpoint-online-mlflow-1 --request-file ../test-data/images_azureml.json
@@ -73,18 +95,20 @@ az ml online-endpoint invoke --name endpoint-online-mlflow-1 --request-file ../t
 cd aml-online-endpoint-mlflow/endpoint-2
 ```
 
-```
-mlflow models predict --model-uri pyfunc-model --input-path "../test-data/images.csv" --content-type csv
-```
+Create the model resource on Azure ML.
 
 ```
 az ml model create --path pyfunc-model/ --name model-online-mlflow-2 --version 1 
 ```
 
+Create the endpoint.
+
 ```
 az ml online-endpoint create -f cloud/endpoint.yml
 az ml online-deployment create -f cloud/deployment.yml --all-traffic
 ```
+
+Invoke the endpoint.
 
 ```
 az ml online-endpoint invoke --name endpoint-online-mlflow-2 --request-file ../test-data/images_azureml.json
