@@ -1,4 +1,6 @@
-This project shows how to deploy a Fashion MNIST MLflow model using an online managed endpoint. Endpoint 1 demonstrates the simplest scenario, and endpoint 2 demonstrates how to wrap the MLflow model with custom code.
+# How to deploy using a managed online endpoint and MLflow
+
+This project shows how to deploy a Fashion MNIST MLflow model using an online managed endpoint. Endpoint 1 demonstrates the simplest scenario, and endpoint 2 demonstrates how to wrap the deployment with custom code.
 
 ## Azure setup
 
