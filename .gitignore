@@ -131,5 +131,5 @@ dmypy.json
 data/
 mlruns/
 model/
-pytorch-model/
-pyfunc-model/
+pytorch_model/
+pyfunc_model/

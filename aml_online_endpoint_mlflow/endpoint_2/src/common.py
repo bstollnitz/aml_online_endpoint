@@ -1,3 +1,3 @@
 """Common code and variables."""
 
-ARTIFACT_NAME = "pytorch-model"
+ARTIFACT_NAME = "pytorch_model"

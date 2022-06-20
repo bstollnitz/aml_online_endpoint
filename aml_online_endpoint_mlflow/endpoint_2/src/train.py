@@ -18,9 +18,9 @@ from model_wrapper import ModelWrapper
 from neural_network import NeuralNetwork
 from utils_train_nn import evaluate, fit
 
-DATA_DIR = "aml-online-endpoint-mlflow/data"
-PYTORCH_MODEL_DIR = "aml-online-endpoint-mlflow/endpoint-2/pytorch-model"
-PYFUNC_MODEL_DIR = "aml-online-endpoint-mlflow/endpoint-2/pyfunc-model"
+DATA_DIR = "aml_online_endpoint_mlflow/data"
+PYTORCH_MODEL_DIR = "aml_online_endpoint_mlflow/endpoint_2/pytorch_model"
+PYFUNC_MODEL_DIR = "aml_online_endpoint_mlflow/endpoint_2/pyfunc_model"
 
 
 def load_train_val_data(
