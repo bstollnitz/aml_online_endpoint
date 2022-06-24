@@ -66,13 +66,6 @@ mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images
 
 # Deploy in the cloud
 
-Create the compute cluster.
-
-```
-cd ..
-az ml compute create -f cloud/cluster-cpu.yml
-```
-
 ## Endpoint 1
 
 ```
