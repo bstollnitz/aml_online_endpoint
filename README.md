@@ -116,3 +116,57 @@ Invoke the endpoint.
 ```
 az ml online-endpoint invoke --name endpoint-online-mlflow-2 --request-file ../test_data/images_azureml.json
 ```
+
+
+## Endpoint 3
+
+```
+cd endpoint_3
+```
+
+Create the model resource on Azure ML.
+
+```
+az ml model create --path model/ --name model-online-mlflow-3 --version 1 --type mlflow_model
+```
+
+Create the endpoint.
+
+```
+az ml online-endpoint create -f cloud/endpoint.yml
+az ml online-deployment create -f cloud/deployment.yml --all-traffic
+```
+
+Invoke the endpoint.
+
+```
+az ml online-endpoint invoke --name endpoint-online-mlflow-3 --request-file ../test_data/images_azureml.json
+```
+
+
+## Endpoint 4
+
+```
+cd endpoint_4
+```
+
+Create the model resource on Azure ML.
+
+```
+az ml model create --path model/ --name model-online-mlflow-4 --version 1 --type mlflow_model
+```
+
+Create the endpoint.
+
+```
+az ml online-endpoint create -f cloud/endpoint.yml
+az ml online-deployment create -f cloud/deployment-blue.yml --all-traffic
+az ml online-deployment create -f cloud/deployment-green.yml
+az ml online-endpoint update --name endpoint-online-mlflow-4 --traffic "blue=90 green=10"
+```
+
+Invoke the endpoint.
+
+```
+az ml online-endpoint invoke --name endpoint-online-mlflow-4 --request-file ../test_data/images_azureml.json
+```
