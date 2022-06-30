@@ -63,6 +63,22 @@ mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images
 mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images.json" --content-type json
 ```
 
+* Repeat for endpoint 3:
+
+```
+cd ../endpoint_3
+mlflow models predict --model-uri model --input-path "../test_data/images.csv" --content-type csv
+mlflow models predict --model-uri model --input-path "../test_data/images.json" --content-type json
+```
+
+* Repeat for endpoint 4:
+
+```
+cd ../endpoint_4
+mlflow models predict --model-uri model --input-path "../test_data/images.csv" --content-type csv
+mlflow models predict --model-uri model --input-path "../test_data/images.json" --content-type json
+```
+
 
 # Deploy in the cloud
 
