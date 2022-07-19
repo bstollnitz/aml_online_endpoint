@@ -1,3 +1,3 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineEndpoint.schema.json
-name: endpoint-online-mlflow-1
-auth_mode: key
+name: endpoint-online-3
+auth_mode: aml_token

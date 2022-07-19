@@ -16,8 +16,8 @@ from torchvision.transforms import ToTensor
 from neural_network import NeuralNetwork
 from utils_train_nn import evaluate, fit
 
-DATA_DIR = "aml_online_endpoint_mlflow/data"
-MODEL_DIR = "aml_online_endpoint_mlflow/endpoint_1/model"
+DATA_DIR = "aml_online_endpoint/data"
+MODEL_DIR = "aml_online_endpoint/endpoint_3/model"
 
 
 def load_train_val_data(

@@ -34,13 +34,13 @@ conda env create -f environment.yml
 Activate conda environment:
 
 ```
-conda activate aml_online_endpoint_mlflow
+conda activate aml_online_endpoint
 ```
 
 
 # Train and predict locally
 
-* Open the 'endpoint_1/src/train.py` file and press F5. An 'endpoint_1/model' folder is created with the trained model.
+* Open the 'endpoint_1/src/train.py` file and press F5. An 'endpoint_1/model' folder is created with the trained model. Repeat for all other endpoints.
 * You can analyze the metrics logged in the "mlruns" directory with the following command:
 
 ```
@@ -50,34 +50,12 @@ mlflow ui
 * Make a local prediction using the trained mlflow model. You can use either csv or json files:
 
 ```
-cd aml_online_endpoint_mlflow/endpoint_1
+cd aml_online_endpoint/endpoint_1
 mlflow models predict --model-uri model --input-path "../test_data/images.csv" --content-type csv
 mlflow models predict --model-uri model --input-path "../test_data/images.json" --content-type json
 ```
 
-* Repeat for endpoint 2:
-
-```
-cd ../endpoint_2
-mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images.csv" --content-type csv
-mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images.json" --content-type json
-```
-
-* Repeat for endpoint 3:
-
-```
-cd ../endpoint_3
-mlflow models predict --model-uri model --input-path "../test_data/images.csv" --content-type csv
-mlflow models predict --model-uri model --input-path "../test_data/images.json" --content-type json
-```
-
-* Repeat for endpoint 4:
-
-```
-cd ../endpoint_4
-mlflow models predict --model-uri model --input-path "../test_data/images.csv" --content-type csv
-mlflow models predict --model-uri model --input-path "../test_data/images.json" --content-type json
-```
+You can repeat for all other endpoints.
 
 
 # Deploy in the cloud
@@ -91,7 +69,7 @@ cd endpoint_1
 Create the model resource on Azure ML.
 
 ```
-az ml model create --path model/ --name model-online-mlflow-1 --version 1 --type mlflow_model
+az ml model create --path model/ --name model-online-1 --version 1 --type mlflow_model
 ```
 
 Create the endpoint.
@@ -104,7 +82,13 @@ az ml online-deployment create -f cloud/deployment.yml --all-traffic
 Invoke the endpoint.
 
 ```
-az ml online-endpoint invoke --name endpoint-online-mlflow-1 --request-file ../test_data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-online-1 --request-file ../test_data/images_azureml.json
+```
+
+Clean up the endpoint, to avoid getting charged.
+
+```
+az ml online-endpoint delete --name endpoint-online-1 -y
 ```
 
 
@@ -117,7 +101,7 @@ cd ../endpoint_2
 Create the model resource on Azure ML.
 
 ```
-az ml model create --path pyfunc_model/ --name model-online-mlflow-2 --version 1 --type mlflow_model
+az ml model create --path pyfunc_model/ --name model-online-2 --version 1 --type mlflow_model
 ```
 
 Create the endpoint.
@@ -130,7 +114,13 @@ az ml online-deployment create -f cloud/deployment.yml --all-traffic
 Invoke the endpoint.
 
 ```
-az ml online-endpoint invoke --name endpoint-online-mlflow-2 --request-file ../test_data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-online-2 --request-file ../test_data/images_azureml.json
+```
+
+Clean up the endpoint, to avoid getting charged.
+
+```
+az ml online-endpoint delete --name endpoint-online-2 -y
 ```
 
 
@@ -143,7 +133,7 @@ cd endpoint_3
 Create the model resource on Azure ML.
 
 ```
-az ml model create --path model/ --name model-online-mlflow-3 --version 1 --type mlflow_model
+az ml model create --path model/ --name model-online-3 --version 1 --type mlflow_model
 ```
 
 Create the endpoint.
@@ -156,7 +146,13 @@ az ml online-deployment create -f cloud/deployment.yml --all-traffic
 Invoke the endpoint.
 
 ```
-az ml online-endpoint invoke --name endpoint-online-mlflow-3 --request-file ../test_data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-online-3 --request-file ../test_data/images_azureml.json
+```
+
+Clean up the endpoint, to avoid getting charged.
+
+```
+az ml online-endpoint delete --name endpoint-online-3 -y
 ```
 
 
@@ -169,7 +165,7 @@ cd endpoint_4
 Create the model resource on Azure ML.
 
 ```
-az ml model create --path model/ --name model-online-mlflow-4 --version 1 --type mlflow_model
+az ml model create --path model/ --name model-online-4 --version 1 --type mlflow_model
 ```
 
 Create the endpoint.
@@ -178,11 +174,17 @@ Create the endpoint.
 az ml online-endpoint create -f cloud/endpoint.yml
 az ml online-deployment create -f cloud/deployment-blue.yml --all-traffic
 az ml online-deployment create -f cloud/deployment-green.yml
-az ml online-endpoint update --name endpoint-online-mlflow-4 --traffic "blue=90 green=10"
+az ml online-endpoint update --name endpoint-online-4 --traffic "blue=90 green=10"
 ```
 
 Invoke the endpoint.
 
 ```
-az ml online-endpoint invoke --name endpoint-online-mlflow-4 --request-file ../test_data/images_azureml.json
+az ml online-endpoint invoke --name endpoint-online-4 --request-file ../test_data/images_azureml.json
+```
+
+Clean up the endpoint, to avoid getting charged.
+
+```
+az ml online-endpoint delete --name endpoint-online-4 -y
 ```
