@@ -117,6 +117,13 @@ Invoke the endpoint.
 az ml online-endpoint invoke --name endpoint-online-2 --request-file ../test_data/images_azureml.json
 ```
 
+Invoke the endpoint using a curl command.
+
+```
+chmod +x invoke.sh
+./invoke.sh
+```
+
 Clean up the endpoint, to avoid getting charged.
 
 ```
