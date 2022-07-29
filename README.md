@@ -38,7 +38,7 @@ conda activate aml_online_endpoint
 ```
 
 
-# Train and predict locally
+## Training and inference on your development machine
 
 * Open the 'endpoint_1/src/train.py` file and press F5. An 'endpoint_1/model' folder is created with the trained model. Repeat for all other endpoints.
 * You can analyze the metrics logged in the "mlruns" directory with the following command:
@@ -55,10 +55,15 @@ mlflow models predict --model-uri model --input-path "../test_data/images.csv" -
 mlflow models predict --model-uri model --input-path "../test_data/images.json" --content-type json
 ```
 
-You can repeat for all other endpoints.
+This same syntax should work for all endpoint with the exception of endpoint 2. Here are the commands for endpoint 2:
 
+```
+cd aml_online_endpoint/endpoint_2
+mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images.csv" --content-type csv
+mlflow models predict --model-uri pyfunc_model --input-path "../test_data/images.json" --content-type json
+```
 
-# Deploy in the cloud
+## Deploying in the cloud
 
 ## Endpoint 1
 
