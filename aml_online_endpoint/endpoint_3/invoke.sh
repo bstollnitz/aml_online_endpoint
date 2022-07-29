@@ -4,7 +4,7 @@ SCORING_URI=$(az ml online-endpoint show --name $ENDPOINT_NAME --query scoring_u
 echo "SCORING_URI: $SCORING_URI"
 
 ACCESS_TOKEN=$(az ml online-endpoint get-credentials --name $ENDPOINT_NAME --query accessToken -o tsv)
-echo "PRIMARY_KEY: $ACCESS_TOKEN"
+echo "ACCESS_TOKEN: $ACCESS_TOKEN"
 
 OUTPUT=$(curl --location \
      --request POST $SCORING_URI \
