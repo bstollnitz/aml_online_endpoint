@@ -73,14 +73,12 @@ def save_model(pytorch_model_dir: str, pyfunc_model_dir: str,
     artifacts = {
         ARTIFACT_NAME: pytorch_model_dir,
     }
-    conda_env = Path(pytorch_model_dir, "conda.yaml").as_posix()
     logging.info("Saving PyFunc model to %s", pyfunc_model_dir)
     shutil.rmtree(pyfunc_model_dir, ignore_errors=True)
     mlflow.pyfunc.save_model(path=pyfunc_model_dir,
                              python_model=model,
                              artifacts=artifacts,
-                             code_path=pyfunc_full_code_paths,
-                             conda_env=conda_env)
+                             code_path=pyfunc_full_code_paths)
 
 
 def train(data_dir: str, pytorch_model_dir: str, pyfunc_model_dir: str,
