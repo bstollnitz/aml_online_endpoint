@@ -2,6 +2,12 @@
 
 This project shows how to deploy a Fashion MNIST MLflow model using an online managed endpoint. Endpoint 1 demonstrates the simplest scenario, endpoint 2 shows how to wrap the deployment with custom code, endpoint 3 exemplifies "aml_token" authentication, and endpoint 4 contains an example of blue-green deployments.
 
+
+## Blog post
+
+To learn more about the code in this repo, check out the accompanying blog post: https://bea.stollnitz.com/blog/aml-online-endpoint/
+
+
 ## Azure setup
 
 * You need to have an Azure subscription. You can get a [free subscription](https://azure.microsoft.com/en-us/free?WT.mc_id=aiml-44166-bstollnitz) to try it out.
@@ -200,3 +206,9 @@ Clean up the endpoint, to avoid getting charged.
 ```
 az ml online-endpoint delete --name endpoint-online-4 -y
 ```
+
+## Related resources
+
+* [Azure ML endpoints](https://docs.microsoft.com/en-us/azure/machine-learning/concept-endpoints?WT.mc_id=aiml-44166-bstollnitz)
+* [Deploying MLflow models](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-mlflow-models?tabs=fromjob%2Cmir%2Ccli?WT.mc_id=aiml-44166-bstollnitz)
+* [Ensuring a safe rollout](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-safely-rollout-managed-endpoints?WT.mc_id=aiml-44166-bstollnitz)
