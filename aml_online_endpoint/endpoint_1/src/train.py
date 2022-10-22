@@ -4,7 +4,6 @@ import argparse
 import logging
 import shutil
 from pathlib import Path
-from typing import Tuple
 
 import mlflow
 import numpy as np
@@ -16,16 +15,16 @@ from torch.utils.data import DataLoader, random_split
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
-from neural_network import NeuralNetwork
-from utils_train_nn import evaluate, fit
+from .neural_network import NeuralNetwork
+from .utils_train_nn import evaluate, fit
 
 DATA_DIR = "aml_online_endpoint/data"
 MODEL_DIR = "aml_online_endpoint/endpoint_1/model"
 
 
 def load_train_val_data(
-        data_dir: str, batch_size: int,
-        training_fraction: float) -> Tuple[DataLoader, DataLoader]:
+    data_dir: str, batch_size: int, training_fraction: float
+) -> tuple[DataLoader[torch.Tensor], DataLoader[torch.Tensor]]:
     """
     Returns two DataLoader objects that wrap training and validation data.
     Training and validation data are extracted from the full original training
@@ -46,7 +45,7 @@ def load_train_val_data(
     return (train_loader, val_loader)
 
 
-def save_model(model_dir, model: nn.Module) -> None:
+def save_model(model_dir: str, model: nn.Module) -> None:
     """
     Saves the trained model.
     """
@@ -99,7 +98,7 @@ def train(data_dir: str, model_dir: str, device: str) -> None:
     save_model(model_dir, model)
 
 
-def main():
+def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser()

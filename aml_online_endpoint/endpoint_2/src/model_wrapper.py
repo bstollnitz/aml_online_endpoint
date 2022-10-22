@@ -6,7 +6,7 @@ import mlflow
 import pandas as pd
 import torch
 
-from common import ARTIFACT_NAME
+from .common import ARTIFACT_NAME
 
 labels_map = {
     0: 'T-Shirt',
@@ -27,10 +27,11 @@ class ModelWrapper(mlflow.pyfunc.PythonModel):
     Wrapper for mlflow model.
     """
 
-    def load_context(self, context):
+    def load_context(self, context: mlflow.pyfunc.PythonModelContext) -> None:
         self.model = mlflow.pytorch.load_model(context.artifacts[ARTIFACT_NAME])
 
-    def predict(self, context, model_input: pd.DataFrame):
+    def predict(self, context: mlflow.pyfunc.PythonModelContext,
+                model_input: pd.DataFrame) -> list[str]:
         with torch.no_grad():
             device = 'cuda' if torch.cuda.is_available() else 'cpu'
             logging.info('Device: %s', device)

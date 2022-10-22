@@ -4,7 +4,6 @@ import argparse
 import logging
 import shutil
 from pathlib import Path
-from typing import Tuple
 
 import mlflow
 import numpy as np
@@ -16,10 +15,10 @@ from torch.utils.data import DataLoader, random_split
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
-from common import ARTIFACT_NAME
-from model_wrapper import ModelWrapper
-from neural_network import NeuralNetwork
-from utils_train_nn import evaluate, fit
+from .common import ARTIFACT_NAME
+from .model_wrapper import ModelWrapper
+from .neural_network import NeuralNetwork
+from .utils_train_nn import evaluate, fit
 
 DATA_DIR = "aml_online_endpoint/data"
 PYTORCH_MODEL_DIR = "aml_online_endpoint/endpoint_2/pytorch_model"
@@ -27,8 +26,8 @@ PYFUNC_MODEL_DIR = "aml_online_endpoint/endpoint_2/pyfunc_model"
 
 
 def load_train_val_data(
-        data_dir: str, batch_size: int,
-        training_fraction: float) -> Tuple[DataLoader, DataLoader]:
+    data_dir: str, batch_size: int, training_fraction: float
+) -> tuple[DataLoader[torch.Tensor], DataLoader[torch.Tensor]]:
     """
     Returns two DataLoader objects that wrap training and validation data.
     Training and validation data are extracted from the full original training
@@ -132,7 +131,7 @@ def train(data_dir: str, pytorch_model_dir: str, pyfunc_model_dir: str,
     save_model(pytorch_model_dir, pyfunc_model_dir, model)
 
 
-def main():
+def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser()
