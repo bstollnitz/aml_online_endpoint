@@ -5,10 +5,44 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python: Current Module",
+      "name": "Train endpoint 1 locally",
       "type": "python",
       "request": "launch",
-      "module": "${command:extension.commandvariable.file.relativeFileDotsNoExtension}"
+      "program": "${workspaceFolder}/aml_online_endpoint/endpoint_1/src/train.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Train endpoint 2 locally",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/aml_online_endpoint/endpoint_2/src/train.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Train endpoint 3 locally",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/aml_online_endpoint/endpoint_3/src/train.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Train endpoint 4 locally",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/aml_online_endpoint/endpoint_4/src/train.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Generate test data",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/aml_online_endpoint/test_data/generate_images.py",
+      "console": "integratedTerminal",
+      "justMyCode": true
     },
   ]
 }
