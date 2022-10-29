@@ -6,7 +6,7 @@ import mlflow
 import pandas as pd
 import torch
 
-from .common import ARTIFACT_NAME
+from common import ARTIFACT_NAME
 
 labels_map = {
     0: 'T-Shirt',
