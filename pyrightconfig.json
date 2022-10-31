@@ -1,0 +1,11 @@
+{
+    "include": [
+        "aml_online_endpoint/endpoint_1/src/*.py",
+        "aml_online_endpoint/endpoint_2/src/*.py",
+        "aml_online_endpoint/endpoint_3/src/*.py",
+        "aml_online_endpoint/endpoint_4/src/*.py",
+        "aml_online_endpoint/test_data/*.py"
+    ],
+    "reportMissingTypeStubs": false,
+    "reportUnknownMemberType": false,
+}

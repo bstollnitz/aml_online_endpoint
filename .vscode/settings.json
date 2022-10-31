@@ -1,5 +1,6 @@
 {
     "python.linting.pylintEnabled": true,
+    // "python.analysis.typeCheckingMode": "strict",
     "python.linting.mypyEnabled": true,
     "python.linting.mypyArgs": [
         "--config-file=${workspaceFolder}/.mypy.ini"
