@@ -43,16 +43,16 @@ mlflow ui
 
 ```
 cd aml_online_endpoint/endpoint_1
-mlflow models predict --model-uri "model" --input-path "../test_data/images.csv" --content-type csv
-mlflow models predict --model-uri "model" --input-path "../test_data/images.json" --content-type json
+mlflow models predict --model-uri "model" --input-path "../test_data/images.csv" --content-type csv --env-manager local
+mlflow models predict --model-uri "model" --input-path "../test_data/images.json" --content-type json --env-manager local
 ```
 
 This same syntax should work for all endpoint with the exception of endpoint 2. Here are the commands for endpoint 2:
 
 ```
 cd aml_online_endpoint/endpoint_2
-mlflow models predict --model-uri "pyfunc_model" --input-path "../test_data/images.csv" --content-type csv
-mlflow models predict --model-uri "pyfunc_model" --input-path "../test_data/images.json" --content-type json
+mlflow models predict --model-uri "pyfunc_model" --input-path "../test_data/images.csv" --content-type csv --env-manager local
+mlflow models predict --model-uri "pyfunc_model" --input-path "../test_data/images.json" --content-type json --env-manager local
 ```
 
 ## Deploying in the cloud
